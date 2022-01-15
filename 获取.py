@@ -45,10 +45,11 @@ for single_list_url in range(0,len(music_list_url)):
         os.mkdir(os.path.join(all_music_folder_name, list_folder_name))
 
     print('正在写入 (------{}------) 文件中......'.format(list_folder_name))
+    file = open('music/'+list_folder_name+'/',mode='wb')
     for song_id, song_name in song:
         single_music_url = f'http://music.163.com/song/media/outer/url?id={song_id}.mp3'
         single_music_content = requests.get(url=single_music_url, headers=headers).content
-        with open('music/'+list_folder_name+'/'+str(song_name).replace('/','-')+ '.mp3', mode='wb') as f:
+        with open(str(song_name).replace('/','-')+ '.mp3', mode='wb') as f:
             f.write(single_music_content)
-        f.close()
+    file.close()
     print('写入 (------{}------) 文件已完成!\n'.format(list_folder_name))
